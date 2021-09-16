@@ -82,8 +82,8 @@ void drawTexture(SDL_Renderer *renderer,int x,int y,SDL_Texture *texture){
 
 	dst.x = x;
 	dst.y = y;
-	// dst.w = src.w;
-	// dst.h = src.h;
+	dst.w = src.w;
+	dst.h = src.h;
 
 	SDL_RenderCopy(renderer, texture, NULL, &dst);
 }
