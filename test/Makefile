@@ -13,21 +13,40 @@
 MLX_PATH			=	../../minilibx-swift
 SDL_PATH			=	../../
 
+TESTS				=	test_init \
+						test_window \
+						test_multi_window
+
+# =========================================================
+
 export MLX_INCLUDE 	=	-I$(MLX_PATH)
-export MLX_CLIB		=	-L$(MLX_PATH -lmlx -framework OpenGL -framework Appkit
+export MLX_CLIB		=	-L$(MLX_PATH) -lmlx -framework OpenGL -framework Appkit
 
 export SDL_INCLUDE 	=	-I$(SDL_PATH)
-export SDL_CLIB		=	-L$(SDL_PATH -lmlx -lSDL2 -lSDL2_image
+export SDL_CLIB		=	-L$(SDL_PATH) -lmlx -lSDL2 -lSDL2_image
 
-all				: test_init
+export MLX_PATH
 
-test_init		:
-	$(MAKE) -C test_init
+# =========================================================
 
-fclean			: clean
-	$(MAKE) -C test_init fclean
+all				:
+	@for DIRS in $(TESTS); do \
+		printf "[TEST] $$DIRS"; \
+		$(MAKE) -C $$DIRS; \
+		printf " ... done!\n"; \
+	done
+
+show			:
+	@printf "MLX_PATH : $(MLX_PATH)\n"
+	@printf "SDL_PATH : $(SDL_PATH)\n"
+	@printf "TESTS : $(TESTS)\n"
+
+fclean			:
+	@for DIRS in $(TESTS); do \
+		$(MAKE) -C $$DIRS fclean; \
+	done
 
 re				: fclean all
 
-.PHONY: clean fclean all re
+.PHONY: fclean all re show
 

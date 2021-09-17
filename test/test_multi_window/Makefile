@@ -10,15 +10,15 @@
 #                                                                              #
 # **************************************************************************** #
 
-MLX_NAME	=	test_init_mlx
-SDL_NAME	=	test_init_sdl
+MLX_NAME	=	test_multi_window_mlx
+SDL_NAME	=	test_multi_window_sdl
 
-TEST_FILE	=	test_init.c
+TEST_FILE	=	test_multi_window.c
 
 all			:
 	@gcc $(TEST_FILE) -o $(MLX_NAME) $(MLX_INCLUDE) $(MLX_CLIB)
 	@install_name_tool -change libmlx.dylib $(MLX_PATH)/libmlx.dylib $(MLX_NAME)
-	@gcc $(TEST_FILE) -o $(SDL_NAME) $(SDL_INCLUDE) $(SDL_CLIB)
+#	@gcc $(TEST_FILE) -o $(SDL_NAME) $(SDL_INCLUDE) $(SDL_CLIB)
 
 show			:
 	@printf "NAME : $(NAME)\n"
