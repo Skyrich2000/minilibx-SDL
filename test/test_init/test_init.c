@@ -6,6 +6,5 @@ int main()
     
     mlx = mlx_init();
 
-    mlx_quit();
     return (0);
 }

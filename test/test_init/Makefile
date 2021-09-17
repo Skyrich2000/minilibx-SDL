@@ -10,24 +10,20 @@
 #                                                                              #
 # **************************************************************************** #
 
-MLX_PATH			=	../../minilibx-swift
-SDL_PATH			=	../../
+MLX_NAME	=	test_init_mlx
+SDL_NAME	=	test_init_sdl
 
-export MLX_INCLUDE 	=	-I$(MLX_PATH)
-export MLX_CLIB		=	-L$(MLX_PATH -lmlx -framework OpenGL -framework Appkit
+TEST_FILE	=	test_init.c
 
-export SDL_INCLUDE 	=	-I$(SDL_PATH)
-export SDL_CLIB		=	-L$(SDL_PATH -lmlx -lSDL2 -lSDL2_image
+all			:
+	gcc $(TEST_FILE) -o $(MLX_NAME) $(MLX_INCLUDE) $(MLX_CLIB)
+	gcc $(TEST_FILE) -o $(SDL_NAME) $(SDL_INCLUDE) $(SDL_CLIB)
 
-all				: test_init
-
-test_init		:
-	$(MAKE) -C test_init
-
-fclean			: clean
-	$(MAKE) -C test_init fclean
+fclean			:
+	rm $(MLX_NAME)
+	rm $(SDL_NAME)
 
 re				: fclean all
 
-.PHONY: clean fclean all re
+.PHONY: fclean all re
 
