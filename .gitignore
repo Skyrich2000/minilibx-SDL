@@ -1,1 +1,8 @@
-mlx
+minilibx-*
+reference
+a.out
+.DS_Store
+.vscode
+
+obj
+libmlx.a
