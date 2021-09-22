@@ -32,6 +32,8 @@ int	mlx_loop(void *mlx_ptr)
 			}
 		}
         render(mlx);
+        if (mlx->loop_hook)
+            mlx->loop_hook(mlx->loop_param);
 	}
     return (1);
 }

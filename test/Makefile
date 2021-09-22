@@ -18,7 +18,8 @@ TESTS				=	\
 						test_loop \
 						test_window \
 						test_multi_window \
-						test_window_destroy
+						test_window_destroy \
+						test_loop_hook
 
 # =========================================================
 

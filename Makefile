@@ -16,6 +16,7 @@ FILE		=	core/mlx_init.c \
 				core/mlx_loop.c \
 				core/mlx_new_window.c \
 				core/mlx_destroy_window.c \
+				hook/mlx_loop_hook.c \
 				lib/mlx_free.c
 
 SRC_DIR		=	./src
