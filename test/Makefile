@@ -13,9 +13,12 @@
 MLX_PATH			=	../../minilibx-swift
 SDL_PATH			=	../../
 
-TESTS				=	test_init \
+TESTS				=	\
+						test_init \
+						test_loop \
 						test_window \
-						test_multi_window
+						test_multi_window \
+						test_window_destroy
 
 # =========================================================
 
@@ -30,11 +33,18 @@ export MLX_PATH
 # =========================================================
 
 all				:
+	@$(MAKE) -C ../
 	@for DIRS in $(TESTS); do \
 		printf "[TEST] $$DIRS"; \
-		$(MAKE) -C $$DIRS; \
+		$(MAKE) -C $$DIRS test; \
 		printf " ... done!\n"; \
 	done
+
+test			:
+	@$(MAKE) -C ../
+	@printf "[TEST] $(TEST_NAME)";
+	@$(MAKE) -C $(TEST_NAME) test;
+	@printf " ... done!\n"; \
 
 show			:
 	@printf "MLX_PATH : $(MLX_PATH)\n"
@@ -42,6 +52,7 @@ show			:
 	@printf "TESTS : $(TESTS)\n"
 
 fclean			:
+	@$(MAKE) -C ../ fclean
 	@for DIRS in $(TESTS); do \
 		$(MAKE) -C $$DIRS fclean; \
 	done

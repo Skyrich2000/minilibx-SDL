@@ -83,24 +83,24 @@ int main()
 		SDL_Delay(1);
 	}
 
-    while(SDL_PollEvent(&event)){
-        switch(event.type){
-            case SDL_WINDOWEVENT:
-                switch(event.window.event){
-                    case SDL_WINDOWEVENT_CLOSE: {
-                        for(int i=0;i<4;i++){
-                            if(SDL_GetWindowID(window[i]) == event.window.windowID){ 
-                                SDL_DestroyRenderer(renderer[i]); 
-                                SDL_DestroyWindow(window[i]); 
-                                break; 
-                            } 
-                        }
-                    }
-                    break;
-                }
-                break;
-        } 
-    }
+    // while(SDL_PollEvent(&event)){
+    //     switch(event.type){
+    //         case SDL_WINDOWEVENT:
+    //             switch(event.window.event){
+    //                 case SDL_WINDOWEVENT_CLOSE: {
+    //                     for(int i=0;i<4;i++){
+    //                         if(SDL_GetWindowID(window[i]) == event.window.windowID){ 
+    //                             SDL_DestroyRenderer(renderer[i]); 
+    //                             SDL_DestroyWindow(window[i]); 
+    //                             break; 
+    //                         } 
+    //                     }
+    //                 }
+    //                 break;
+    //             }
+    //             break;
+    //     } 
+    // }
 
     closeAll();
     return (0);
