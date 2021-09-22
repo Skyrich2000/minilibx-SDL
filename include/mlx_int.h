@@ -5,27 +5,47 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <stddef.h>
+# include <signal.h>
+# include <unistd.h>
+# include <errno.h>
 
 # include <SDL2/SDL.h>
 # include <SDL2/SDL_image.h>
 
-# define MLX_MAX_EVENT 33
+# define OK	1
+# define ERROR 0
 
-typedef struct s_event_list
+# define MLX_MAX_EVENT 33
+# define MLX_MAX_WINDOW 20
+
+# define PREFIX "minilibx-SDL"
+
+# define GUARD(test) \
+    if ((test)) {}
+
+# define RETURN(string) \
+	fprintf(stderr, "[%s] %s \n", PREFIX, (string)); \
+	return (ERROR);
+
+# define THROW(string) \
+	mlx_error = (string); \
+    return (ERROR);
+
+typedef struct s_event
 {
 	int		mask;
 	int		(*hook)();
 	void	*param;
-}	t_event_list;
+}	t_event;
 
-typedef struct s_window_list
+typedef struct s_win_list
 {
 	SDL_Window			*window;
 	SDL_Surface			*surface;
-	int					window_id;
+	int					id;
+	t_event				hooks[MLX_MAX_EVENT];
 	struct s_win_list	*next;
-	t_event_list		hooks[MLX_MAX_EVENT];
-}	t_window_list;
+}	t_win_list;
 
 typedef struct s_img
 {
@@ -39,11 +59,13 @@ typedef struct s_img
 
 typedef struct s_xvar
 {
-	t_window_list	*win_list;
+	t_win_list		*win_id[MLX_MAX_WINDOW];
+	t_win_list		*win_list;
+	int				win_count;
 	int				(*loop_hook)();
 	void			*loop_param;
-	int 			end_loop;
 }	t_xvar;
 
+void	mlx_free(t_xvar *mlx);
 
 #endif

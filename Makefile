@@ -12,7 +12,11 @@
 
 NAME		=	libmlx.a
 
-FILE		=	mlx_init.c
+FILE		=	core/mlx_init.c \
+				core/mlx_loop.c \
+				core/mlx_new_window.c \
+				core/mlx_destroy_window.c \
+				lib/mlx_free.c
 
 SRC_DIR		=	./src
 SRCS		=	$(addprefix $(SRC_DIR)/, $(FILE))
@@ -23,8 +27,7 @@ OBJS		=	$(addprefix $(OBJ_DIR)/, $(patsubst %.c,%.o,$(FILE)))
 # Options =================================================
 
 CC			=	gcc
-INCLUDE 	=	-Iinclude -I.
-CLIB		=	-lSDL2 -lSDL2_image
+INCLUDE 	=	-I.
 
 # =========================================================
 
@@ -32,10 +35,10 @@ all				: $(NAME)
 
 $(OBJ_DIR)/%.o	: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
-	@$(CC) $(INCLUDE) $(CLIB) -c $< -o $@
+	$(CC) $(INCLUDE) -c $< -o $@
 
 $(NAME)			: $(OBJS)
-	ar -r $(NAME) $(OBJ)
+	ar -rc $@ $^
 	ranlib $(NAME)
 
 show			:
@@ -48,7 +51,7 @@ norm			:
 	@python3 -m norminette src/*
 
 test			:
-	$(MAKE)	-C ./test
+	@$(MAKE) -C ./test
 
 clean			:
 	@rm -rf $(OBJ_DIR)
@@ -58,4 +61,4 @@ fclean			: clean
 
 re				: fclean all
 
-.PHONY			:	all clean fclean re bonus show norm run
+.PHONY			:	all clean fclean re show test
