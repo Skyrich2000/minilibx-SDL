@@ -1,11 +1,12 @@
 #include "mlx.h"
 #include "include/mlx_int.h"
+#include "include/mlx_event.h"
 
 static void render(t_xvar *mlx)
 {
     t_win_list *win;
 
-    win = mlx->win_list;
+    win = mlx->win_list->next;
     while (win != NULL)
     {
         SDL_UpdateWindowSurface(win->window);
@@ -28,6 +29,12 @@ int	mlx_loop(void *mlx_ptr)
                             mlx_destroy_window(mlx, mlx->win_id[event.window.windowID]);
                             break;
                     }
+                    break;
+                case SDL_KEYDOWN:
+                    mlx_key_press_handler(mlx, event.key.windowID, event.key.keysym.sym);
+                    break;
+                case SDL_KEYUP:
+                    mlx_key_release_handler(mlx, event.key.windowID, event.key.keysym.sym);
                     break;
 			}
 		}

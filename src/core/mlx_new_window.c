@@ -26,6 +26,9 @@ void	*mlx_new_window(void *mlx_ptr, int size_x, int size_y, char *title)
     t_xvar      *mlx;
     t_win_list  *win;
 
+    GUARD (mlx_ptr != NULL) else { RETURN("Invalid mlx pointer"); }
+    GUARD (title != NULL) else { RETURN("Invalid title"); }
+
     mlx = (t_xvar *)mlx_ptr;
     win = (t_win_list *)malloc(sizeof(t_win_list));
     GUARD (win != NULL) else { RETURN("Out of memory"); }

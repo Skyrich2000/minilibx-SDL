@@ -17,7 +17,10 @@ FILE		=	core/mlx_init.c \
 				core/mlx_new_window.c \
 				core/mlx_destroy_window.c \
 				hook/mlx_loop_hook.c \
-				lib/mlx_free.c
+				hook/mlx_hook.c \
+				hook/mlx_key_hook.c \
+				lib/mlx_free.c \
+				lib/mlx_key.c
 
 SRC_DIR		=	./src
 SRCS		=	$(addprefix $(SRC_DIR)/, $(FILE))
