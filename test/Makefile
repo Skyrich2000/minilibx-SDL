@@ -15,12 +15,13 @@ SDL_PATH			=	../../
 
 TESTS				=	\
 						test_init \
+						test_key_hook \
 						test_loop \
-						test_window \
-						test_multi_window \
-						test_window_destroy \
 						test_loop_hook \
-						test_fps_blank
+						test_multi_window \
+						test_window \
+						test_window_destroy \
+            test_fps_blank
 
 # =========================================================
 
