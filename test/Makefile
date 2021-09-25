@@ -14,14 +14,14 @@ MLX_PATH			=	../../minilibx-swift
 SDL_PATH			=	../../
 
 TESTS				=	\
+            			test_fps_blank \
 						test_init \
 						test_key_hook \
 						test_loop \
 						test_loop_hook \
 						test_multi_window \
 						test_window \
-						test_window_destroy \
-            test_fps_blank
+						test_window_destroy
 
 # =========================================================
 
