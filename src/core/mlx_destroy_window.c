@@ -28,6 +28,8 @@ int	mlx_destroy_window(void *mlx_ptr, void *win_ptr)
     t_xvar      *mlx;
     t_win_list  *win;
 
+    GUARD (mlx_ptr != NULL) else { RETURN("Invalid mlx pointer"); }
+    GUARD (win_ptr != NULL) else { RETURN("Invalid window pointer"); }
 
     mlx = (t_xvar *)mlx_ptr;
     win = (t_win_list *)win_ptr;

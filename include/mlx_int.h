@@ -15,7 +15,7 @@
 # define OK	1
 # define ERROR 0
 
-# define MLX_MAX_EVENT 33
+# define MLX_MAX_EVENT 40
 # define MLX_MAX_WINDOW 20
 
 # define PREFIX "minilibx-SDL"
@@ -67,5 +67,8 @@ typedef struct s_xvar
 }	t_xvar;
 
 void	mlx_free(t_xvar *mlx);
+
+void    mlx_key_press_handler(t_xvar *mlx, int win_id, int keycode);
+void    mlx_key_release_handler(t_xvar *mlx, int win_id, int keycode);
 
 #endif
