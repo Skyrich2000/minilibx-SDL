@@ -20,7 +20,8 @@ TESTS				=	\
 						test_loop_hook \
 						test_multi_window \
 						test_window \
-						test_window_destroy
+						test_window_destroy \
+            test_fps_blank
 
 # =========================================================
 
