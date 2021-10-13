@@ -20,6 +20,7 @@ TESTS				=	\
 						test_loop \
 						test_loop_hook \
 						test_multi_window \
+						test_png_image \
 						test_window \
 						test_window_destroy
 
